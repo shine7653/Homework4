@@ -18,23 +18,30 @@ var questions = [
     },
 ];
 
+var presentQues = 0;
 // Loop over every question object
 function quizLoop() {
-    var curQuestions = createElement("que");
-    curQuestions.textContent = questions[title];
+    
+    var curQuestions = document.createElement("div");
+    curQuestions.textContent = questions[presentQues].title;
     quizBox.appendChild(curQuestions);
-    /* quizBox.textContent = questions.title; */
 
+    // TODO: create loop to show answers to choose
     var ull = document.createElement("ul");
     
-    for (var i = 0; i < questions[choices].length; i++) {
-        var curChoices = questions[choices][i];
-
+    for (var i = 0; i < questions[presentQues].choices.length; i++) {
+        var curChoices = questions[presentQues].choices[i];
         var items = document.createElement("li");
-        items.textContent = curChoices[0];
+        items.textContent = curChoices;
+        ull.appendChild(items);           
 
-        ull.appendChild(items);        
+        
+        // When user choose the right answer which is in the choices
+        items.addEventListener("click",function(event){
+            console.log(event);
+        });
     }
+    
     return ull;
 };
 
@@ -60,15 +67,9 @@ function makeUL(array) {
 }
 
 // Add the contents of options[0] to #foo:
-document.getElementById('foo').appendChild(makeUL(options[0]));     */    
-
-        // When user choose the right answer which is in the choices
+document.getElementById('foo').appendChild(makeUL(options[0]));     */       
         
-        // TODO: create loop to show answers to choose
-        // startEl.addEventListener("click", function() {
-        //     event.preventDefault();
-
-        // When user choose the right answer which is in the choices
+       
         
     // Capture the score which is the remaining sec tin timer ???????
 
