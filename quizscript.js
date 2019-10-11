@@ -1,10 +1,11 @@
 var timeEl = document.querySelector("#countdown");
+var timeE2 = document.querySelector("#quizCountdown");
 var startEl = document.querySelector("#startButton");
 var nameInput = document.querySelector("#name");
 var submissionResponseE1 = document.querySelector("#response");
 var scoreResult = document.querySelector("#scoreResult")
-var quizBox = document.querySelector("#quizBox");
-//var ooo = document.querySelector(".choices")
+var arrayQues = document.querySelector("#myQues");
+var ull = document.querySelector("#myBtn")
 
 // The array of questions for our quiz game.
 var questions = [
@@ -12,66 +13,76 @@ var questions = [
       choices: ["strings", "booleans", "alerts", "numbers"],
       answer: "alerts"
     },
-    {title: "The condition in an if / else statement is enclosed within ____.",
+    { title: "The condition in an if / else statement is enclosed within ____.",
       choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
       answer: "parentheses"
     },
 ];
 
-var presentQues = 0;
 // Loop over every question object
 function quizLoop() {
-    
-    var curQuestions = document.createElement("div");
-    curQuestions.textContent = questions[presentQues].title;
-    quizBox.appendChild(curQuestions);
 
-    // TODO: create loop to show answers to choose
-    var ull = document.createElement("ul");
-    
-    for (var i = 0; i < questions[presentQues].choices.length; i++) {
-        var curChoices = questions[presentQues].choices[i];
-        var items = document.createElement("li");
-        items.textContent = curChoices;
-        ull.appendChild(items);           
+      /* var secondsLeft = 10;
 
+      function setTime() {
+        var timerInterval = setInterval (function() {
+          secondsLeft--;
+          timeE2.textContent = secondsLeft;
         
-        // When user choose the right answer which is in the choices
-        items.addEventListener("click",function(event){
-            console.log(event);
-        });
-    }
+          if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            sendMessage();
+          }
+        }, 1000);
+
+
+      }
+
+      function sendMessage() {
+        timeE2.textContent = "Time's UP";
+      }
+
+      setTime();
     
-    return ull;
+ */
+
+
+  for (var j = 0; j < questions[j]; j++) {
+      
+      var curQuestions = document.createElement("div");
+      curQuestions.textContent = questions[j].title;
+      arrayQues.appendChild(curQuestions);
+
+      // TODO: create loop to show answers to choose
+      var ull = document.createElement("ul");
+
+      for (var i = 0; i < questions[j].choices.length; i++) {
+          var curChoices = questions[j].choices[i];
+
+          var buttons = document.createElement("li");
+          buttons.textContent = curChoices[i];
+          ull.appendChild(buttons);
+
+          // When user choose the right answer which is in the choices
+          ull.addEventListener("click", function() {
+            if (useChoice !== questions[j].answer) {
+              ull.prepend("<br><hr>" + "WRONG");
+            } else {
+              ull.prepend("<br><hr>" + "CORRECT");
+            }
+          }
+          
+       }
+    
+  };     
+
+          
 };
 
-/*     var options = [
-        set0 = ['Option 1','Option 2'],
-        set1 = ['First Option','Second Option','Third Option']
-    ];
-
-function makeUL(array) {
-    // Create the list element:
-    var list = document.createElement('ul');
-
-    for (var i = 0; i < array.length; i++) {
-        // Create the list item:
-        var item = document.createElement('li');
-        // Set its contents:
-        item.appendChild(document.createTextNode(array[i]));
-        // Add it to the list:
-        list.appendChild(item);
-    }
-    // Finally, return the constructed list:
-    return list;
-}
-
-// Add the contents of options[0] to #foo:
-document.getElementById('foo').appendChild(makeUL(options[0]));     */       
-        
+/*    
+}   */
        
-        
-    // Capture the score which is the remaining sec tin timer ???????
+    // Capture the score which is the remaining sec in timer ???????
 
 
 // --------------------------------------------
@@ -81,10 +92,10 @@ startEl.addEventListener("click", function() {
 
     // start quiz
     quizLoop();
-    var secondsLeft = 10;
+    var secondsLeft = 20;
 
     function setTime() {
-      var timerInterval = setInterval(function() {
+      var timerInterval = setInterval (function() {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
     
