@@ -1,124 +1,79 @@
-var timeEl = document.querySelector("#countdown");
-var timeE2 = document.querySelector("#quizCountdown");
-var startEl = document.querySelector("#startButton");
-var nameInput = document.querySelector("#name");
-var submissionResponseE1 = document.querySelector("#response");
-var scoreResult = document.querySelector("#scoreResult")
-var arrayQues = document.querySelector("#myQues");
-var ull = document.querySelector("#myBtn")
+var timeEl = document.querySelector("#countDown");
+var arrayQues = document.querySelector("#queAnswers");
 
-// The array of questions for our quiz game.
-var questions = [
-    { title: "Commonly used data types DO NOT include:",
-      choices: ["strings", "booleans", "alerts", "numbers"],
-      answer: "alerts"
-    },
-    { title: "The condition in an if / else statement is enclosed within ____.",
-      choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
-      answer: "parentheses"
-    },
-];
+var quesIndex = 0;
+var score = 0;
+//---------------------------------------
 
-// Loop over every question object
-function quizLoop() {
+// Make the greeting comment
+function displayGreeting() {
+  alert(startOver.greeting);
+}
+displayGreeting();
 
-      /* var secondsLeft = 10;
+// As soon as the question starts, timer begins
+var timerInterval = setTime();
 
-      function setTime() {
-        var timerInterval = setInterval (function() {
-          secondsLeft--;
-          timeE2.textContent = secondsLeft;
-        
-          if(secondsLeft === 0) {
-            clearInterval(timerInterval);
-            sendMessage();
-          }
-        }, 1000);
+// Sets next question and choice buttons
+function nextQues() {
 
+  var question = document.createElement("h1");
+  //console.log(questions);
+  question.textContent = questions[quesIndex].title;
+  arrayQues.appendChild(question);
 
+  // Set the choices
+  for (var i = 0; i < questions[quesIndex].choices.length ; i++) {
+    var button = document.createElement("button");
+    button.textContent = questions[quesIndex].choices[i];
+    arrayQues.appendChild(button);
+
+    // Set the button event listener
+    button.addEventListener("click", function(event) {
+      var userChoice = event.target.textContent;
+      if (userChoice === questions[quesIndex].answer) {
+        alert("CORRECT") 
+        score++;
+      } else { 
+        alert("FALSE")
+        secondsLeft = secondsLeft-15 ;
       }
-
-      function sendMessage() {
-        timeE2.textContent = "Time's UP";
-      }
-
-      setTime();
-    
- */
-
-
-  for (var j = 0; j < questions[j]; j++) {
       
-      var curQuestions = document.createElement("div");
-      curQuestions.textContent = questions[j].title;
-      arrayQues.appendChild(curQuestions);
+      // If questions remaining, increment current question. 
+      // Otherwise end game and stop timer.
+      if (quesIndex < 4) {
+        quesIndex++;
+      } else {
+        clearInterval(timerInterval);
+        alert("GAME OVER! Your score is: " + score)
+      }
 
-      // TODO: create loop to show answers to choose
-      var ull = document.createElement("ul");
+      arrayQues.innerHTML = "";
 
-      for (var i = 0; i < questions[j].choices.length; i++) {
-          var curChoices = questions[j].choices[i];
+      return nextQues();
+    })
+  }
+}
+nextQues();
 
-          var buttons = document.createElement("li");
-          buttons.textContent = curChoices[i];
-          ull.appendChild(buttons);
+ // Set th timer
+  var secondsLeft = 70;
 
-          // When user choose the right answer which is in the choices
-          ull.addEventListener("click", function() {
-            if (useChoice !== questions[j].answer) {
-              ull.prepend("<br><hr>" + "WRONG");
-            } else {
-              ull.prepend("<br><hr>" + "CORRECT");
-            }
-          }
-          
-       }
-    
-  };     
+  function setTime() {
+    var timerInterval = setInterval(function () {
+      secondsLeft--;
+      timeEl.textContent = secondsLeft;
 
-          
-};
+      if (secondsLeft === 0) {
+        clearInterval(timerInterval);
+        sendMessage();
+      }
+    }, 1000);
 
-/*    
-}   */
-       
-    // Capture the score which is the remaining sec in timer ???????
+    return timerInterval;
+  }
 
-
-// --------------------------------------------
-
-startEl.addEventListener("click", function() {
-    event.preventDefault();
-
-    // start quiz
-    quizLoop();
-    var secondsLeft = 20;
-
-    function setTime() {
-      var timerInterval = setInterval (function() {
-        secondsLeft--;
-        timeEl.textContent = secondsLeft;
-    
-        if(secondsLeft === 0) {
-          clearInterval(timerInterval);
-          sendMessage();
-        }
-      }, 1000);
-    }
-    
-    function sendMessage() {
-      timeEl.textContent = "Time's UP";
-      scoreResult.textContent = "All Done!";                                  
-    }
-    
-    setTime();
-});
-
-/* var response = "Thank you for your submission " + nameInput.value;
-submissionResponseE1.textContent = response; */                      
-
-
-
-/* function setCounterText() {
-  countEl.textContent = count;
-} */
+  function sendMessage() {
+    timeEl.textContent = "Time's UP";
+    // scoreResult.textContent = "All Done!";
+  }

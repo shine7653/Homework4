@@ -1,0 +1,4 @@
+
+
+setAtrribute  -> Does this set up the class as well? not only the style?
+
