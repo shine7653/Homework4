@@ -32,12 +32,21 @@ Fifteen seconds per question is a good estimate, so 5 questions will result in a
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>CodeQuiz</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/jquery.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-
+  <style>
+    .container {
+      text-align: center;
+    }
+   .saveScore .time {
+      font-size: 24px;
+   }
+   .countDown {
+     font-size: 28px;
+   }
+  </style>
 </head>
 
 <body>
@@ -45,28 +54,36 @@ Fifteen seconds per question is a good estimate, so 5 questions will result in a
   <div class="container">
     
     <div class="row">
+
       <div class="col-md-2">
          <div id="saveScore">Highscores</div>
       </div>
-      <div class="col-md-8">
-         
+
+      <div class="col-md-8" id="start">   
+        <!-- <button id="button"></button> -->
       </div>
+
       <div class="col-md-2">
          <div id="time">Time : <span id ="countDown"></span></div>
       </div>
+
     </div>    
 
     <div class="row">
-      <div class="col-md-2">
-         
-      </div>
+
+      <div class="col-md-2">  </div>
+
       <div class="col-md-8">
           <div id="queAnswers"></div>
+          <div id="yourName"></div>
       </div>
-      <div class="col-md-2">
-         
-      </div>
+
+      <div class="col-md-2">  </div>
+
     </div>
+
+
+
     <script src="./quizscript-ques.js"></script>
   <script src="./quizscript.js"></script>
   
